@@ -53,6 +53,15 @@ class User extends Authenticatable
         return Bonuses::where("user_id", $id)->where(DB::raw("DATEDIFF(NOW(), created_at)"), "<=", "7")->count();
     }
 
+    public static function userCountActiveBonuses($user)
+    {  
+        return $user->bonuses()
+            ->where("usage", "0")
+            ->where(DB::raw("DATEDIFF(NOW(), created_at)"), "<", "30")
+            ->get()
+            ->count();
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);

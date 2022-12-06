@@ -16,16 +16,6 @@ class Bonuses extends Model
         'user_id',
     ];
 
-    public static function countBonuses()
-    {
-        return Bonuses::where([
-            "user_id" => auth()->id(),
-            "usage" => "0"
-        ])->where(DB::raw("DATEDIFF(NOW(), created_at)"), "<", "30")
-        ->get()
-        ->count();
-    }
-
     public static function burningBonuses()
     {
         $dateBonus = Bonuses::select("created_at")
