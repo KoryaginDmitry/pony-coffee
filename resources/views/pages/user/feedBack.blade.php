@@ -14,18 +14,18 @@
         <select name="coffeePot">
             <option value="0">Укажите адрес кофеточки</option>
             @foreach ($coffeePots as $coffeePot)
-                <option value="{{ $coffeePot->id }}" {{ old('coffeePot') == $coffeePot->id ? "selected" : '' }}>{{ $coffeePot->address }}</option>
+                <option value="{{ $coffeePot->id }}" @selected(old('coffeePot') == $coffeePot->id)>{{ $coffeePot->address }}</option>
             @endforeach
         </select>
 
         @error('grade')
             <p>{{ $message }}</p>
         @enderror
-        <input type="radio" value="1" name="grade" {{ old('grade') == "1" ? 'checked' : '' }}>
-        <input type="radio" value="2" name="grade" {{ old('grade') == "1" ? 'checked' : '' }}>
-        <input type="radio" value="3" name="grade" {{ old('grade') == "1" ? 'checked' : '' }}>
-        <input type="radio" value="4" name="grade" {{ old('grade') == "1" ? 'checked' : '' }}>
-        <input type="radio" value="5" name="grade" {{ old('grade') == "1" ? 'checked' : '' }}>
+        <input type="radio" value="1" name="grade" @checked(old('grade', "1"))>
+        <input type="radio" value="2" name="grade" @checked(old('grade', "2"))>
+        <input type="radio" value="3" name="grade" @checked(old('grade', "3"))>
+        <input type="radio" value="4" name="grade" @checked(old('grade', "4"))>
+        <input type="radio" value="5" name="grade" @checked(old('grade', "5"))>
 
         @error('text')
             <p>{{ $message }}</p>

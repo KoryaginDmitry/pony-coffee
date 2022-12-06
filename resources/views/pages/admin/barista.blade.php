@@ -69,7 +69,7 @@
         <select name="coffeePot">
             <option value="0">выберите место работы</option>
             @foreach ($coffeePots as $coffeePot)
-                <option value="{{ $coffeePot->id }}" {{ old('coffeePot') == $coffeePot->id ? 'selected' : '' }}>{{ $coffeePot->address }}</option>
+                <option value="{{ $coffeePot->id }}" @selected(old('coffeePot') == $coffeePot->id)>{{ $coffeePot->address }}</option>
             @endforeach
         </select>
         <input type="submit" value="Добавить">
