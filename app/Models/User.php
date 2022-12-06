@@ -84,7 +84,7 @@ class User extends Authenticatable
 
     public function userCoffeePot()
     {
-        return $this->hasOne(UserCoffeePotPivot::class);
+        return $this->hasOne(UserCoffeePot::class);
     }
 
     public function feedbacks()

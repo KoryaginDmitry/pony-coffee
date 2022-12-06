@@ -1,22 +1,25 @@
 <?php
 
+use App\Http\Controllers\Admin\BaristaProfileController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\SendingMessagesController;
 use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CoffeePotController;
+use App\Http\Controllers\Admin\CoffeePotController;
 
 Route::middleware("auth")->group(function(){
     Route::controller(CoffeePotController::class)->group(function(){
-        Route::get("/ProfilesCoffeePot", "show")->name("CoffeePotProfilesShow");
+        Route::get("/coffeePots", "show")->name("coffeePot.show");
+        Route::post("/CoffeePot/add", "add")->name('coffeePot.add');
+        Route::post("/CoffeePot/Update/{id}", "update")->name('coffeePot.update');
+        Route::post("/CoffeePot/Delete/{id}", "delete")->name('coffeePot.delete');
+    });
 
-        Route::post("/ProfilesCoffeePot/add", "addCoffeePot")->name('addCoffeePot');
-        Route::post("/CoffeePot/Delete/{id}", "deleteCoffeePot")->name('deleteCoffeePot');
-        Route::post("/CoffeePot/Update/{id}", "updateCoffeePot")->name('updateCoffeePot');
-
-        Route::post("/coffeePot/user/add", "addUser")->name('UserAdd');
-        Route::post("/CoffeePot/user/update/{id}", "updateUser")->name('UserUpdate');
-        Route::post("/CoffeePot/user/delete/{id}", "deleteUser")->name('UserDelete');
+    Route::controller(BaristaProfileController::class)->group(function(){
+        Route::get("/barista", "show")->name("barista.show");
+        Route::post("/barista/add", "addUser")->name('barista.add');
+        Route::post("/barista/Update/{id}", "updateUser")->name('barista.update');
+        Route::post("/barista/Delete/{id}", "deleteUser")->name('barista.delete');
     });
 
     Route::controller(FeedbackController::class)->group(function(){

@@ -15,7 +15,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_coffee_pot_pivots', function (Blueprint $table) {
+        Schema::create('user_coffee_pots', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(CoffeePot::class);

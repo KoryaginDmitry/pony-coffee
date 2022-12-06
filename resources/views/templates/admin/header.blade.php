@@ -5,7 +5,8 @@
         <li><a href="{{ route("admin.showUserStatistic") }}">Статистика пользователей</a></li>
         <li><a href="{{ route("admin.showFeedback") }}">Обратная связь</a></li>
         <li><a href="{{ route("admin.showFormSending") }}">Рассылка</a></li>
-        <li><a href="{{ route("admin.CoffeePotProfilesShow") }}">Кофеточки/продавцы</a></li>
+        <li><a href="{{ route("admin.coffeePot.show") }}">Кофеточки</a></li>
+        <li><a href="{{ route("admin.barista.show") }}">Баристы</a></li>
         <li><a href="{{ route("logout") }}">Выход</a></li>
     </ul>
 </header>
