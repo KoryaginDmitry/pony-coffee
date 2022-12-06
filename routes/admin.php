@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Admin\BaristaProfileController;
 use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\SendingMessagesController;
 use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CoffeePotController;
+use App\Http\Controllers\NotificationController;
 
 Route::middleware("auth")->group(function(){
     Route::controller(CoffeePotController::class)->group(function(){
@@ -27,9 +27,9 @@ Route::middleware("auth")->group(function(){
         Route::post("/feedback/response/{feedback_id}", "addResponse")->name('feedbackResponse');
     });
 
-    Route::controller(SendingMessagesController::class)->group(function(){
-        Route::get("/sending", "showForm")->name('showFormSending');
-        Route::post("/sending/process", "sendingProcess")->name('sendingProcess');
+    Route::controller(NotificationController::class)->group(function(){
+        Route::get("/notifications", "showForm")->name('notifications.show');
+        Route::post("/notifications/create", "createNotification")->name('notifications.create');
     });
 
     Route::controller(StatisticController::class)->group(function(){

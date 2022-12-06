@@ -1,22 +1,41 @@
-<?php
+<?php 
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Models\Notifications;
-use Illuminate\Http\Request;
 
-class SendingMessagesController extends Controller
-{
-    public function showForm()
-    {   
-        $notifications = Notifications::orderBy("created_at", "DESC")->get();
+class NotificationService
+{   
+    public function getUserNotifications($user_id)
+    {
+        $notifications = Notifications::where("site", "1")
+                ->where("users_read_id", NULL)
+                ->orWhere("users_read_id", "NOT LIKE", "%[$user_id]%")
+                ->orderBy("created_at", "DESC")
+                ->get();
 
-        return view("pages.admin.mailing", [
+        return [
             "notifications" => $notifications
-        ]);
+        ];  
     }
 
-    public function sendingProcess(Request $request)
+    public function readNotification($id)
+    {
+        $notification = Notifications::findOrFail($id);
+
+        $notification->users_read_id =trim($notification->users_read_id . ",[" . auth()->id() . "]", ",");
+
+        $notification->save();
+    }
+
+    public function getAllNotifications()
+    {   
+        return [
+            "notifications" => Notifications::orderBy("created_at", "DESC")->get()
+        ];
+    }
+
+    public function createNotification($request)
     {
         $request->validate([
             "email" => ["sometimes", "accepted"],
@@ -43,7 +62,5 @@ class SendingMessagesController extends Controller
             "site" => $request->site ? "1" : "0",
             "text" => $request->text
         ]);
-
-        return redirect()->route('admin.showFormSending');
     }
 }

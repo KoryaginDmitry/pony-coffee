@@ -6,7 +6,7 @@
 
 @include('templates.admin.header')
 
-    <form action="{{ route('admin.sendingProcess') }}" method="POST">
+    <form action="{{ route('admin.notifications.create') }}" method="POST">
         @csrf
         @error('email')
             <p>{{ $message }}</p>
