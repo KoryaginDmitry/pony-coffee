@@ -48,7 +48,7 @@ Route::middleware("guest")->group(function(){
     });
 });
 
-Route::get('/', [homeController::class, "home"])->name("home");
+Route::get('/', [homeController::class, "home"])->where('view', '(.*)')->name("home");
 
 
 

@@ -16,3 +16,7 @@ import './components/Example';
 
 import ReactDOM from 'react-dom/client';        
 import Home from './page/home';
+
+let div = document.querySelector('#content')
+
+div.innerHTML = '<p>Иди нахуй</p>';
