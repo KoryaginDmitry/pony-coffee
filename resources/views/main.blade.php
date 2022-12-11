@@ -7,9 +7,9 @@
     <title>Pony-coffee</title>
 
     @viteReactRefresh
-    @vite('resources/js/app.jsx')
+    @vite('resources/js/index.jsx')
 </head>
 <body>
-    <div id="content"></div>
+    <div id="root"></div>
 </body>
 </html>
