@@ -19,14 +19,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get("getHeader", function(){
-    return [
+    return response()->json([
             [
                 "text" => "Войти",
                 "url" => route('login')
             ],
             [
                 "text" => "Регистрация",
-                "url" => route('register')
+                "url" => route('showFormRegister')
             ]
-        ];
+        ]);
 });
